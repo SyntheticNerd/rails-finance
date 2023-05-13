@@ -1,0 +1,19 @@
+<div class="my-5">
+  <% flash.each do |type, msg| %>
+    <% if type == 'alert' %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% else %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= msg %>
+        <%= type %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button></div>
+    <% end %>
+  <% end %>
+</div>
