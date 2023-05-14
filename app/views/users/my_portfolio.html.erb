@@ -1,0 +1,24 @@
+<h1>My Portfolio</h1>
+<div class="row mb-4">
+  <div class="search_area">
+    <h4>Search Stocks</h4>
+    <%= form_tag search_stock_path, method: :get, remote: true, data: {turbo: false} do %>
+      <div class="input-group">
+        <%= text_field_tag :stock, params[:stock], placeholder: 'Stock Ticker Symbol', autofocus: true, class: "form-control"  %>
+        <div class="input-group-append">
+          <%= button_tag type: :submit, class:"btn btn-outline-secondary" do %>
+            <i class="bi bi-search"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row mb-4">
+  <div id="results"></div>
+</div>
+<div class="row mb-4" >
+  <% if !@tracked_stocks.empty? %>
+    <%= render 'stocks/list' %>
+  <% end %>
+</div>

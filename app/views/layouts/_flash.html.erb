@@ -1,3 +1,4 @@
+
 <div class="my-5">
   <% flash.each do |type, msg| %>
     <% if type == 'alert' %>
@@ -12,7 +13,6 @@
         <%= msg %>
         <%= type %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
         </button></div>
     <% end %>
   <% end %>
