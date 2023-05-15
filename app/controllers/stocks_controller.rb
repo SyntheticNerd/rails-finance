@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  protect_from_forgery except: :search
+  protect_from_forgery except: %i[search refresh]
 
   def search
     if params[:stock].present?
@@ -20,5 +20,17 @@ class StocksController < ApplicationController
         format.js { render partial: 'users/result_js' }
       end
     end
+  end
+
+  def refresh
+    stock = Stock.find(params[:stock])
+    new_stock = Stock.new_lookup(stock.ticker)
+    p new_stock
+    stock.update(last_price: new_stock.last_price, name: new_stock.name)
+    respond_to do |format|
+      flash.now[:alert] = 'Refresh'
+      format.js { render partial: 'users/refresh_js' }
+    end
+
   end
 end

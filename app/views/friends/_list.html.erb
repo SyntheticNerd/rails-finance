@@ -1,0 +1,23 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <th scope="row"><%= friend.friend.email %></th>
+        <td><%= friend.friend.first_name %></td>
+        <td><%= friend.friend.last_name %></td>
+        <td>
+          <%# <button class="btn btn-danger btn-sm">Delete</button> %>
+          <%= link_to 'Delete','', data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
