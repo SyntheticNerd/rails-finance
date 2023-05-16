@@ -1,0 +1,22 @@
+<%= render 'layouts/flash' if !flash.empty? %>
+<% if @friends %>
+  <div class="stock card card-header container">
+    <h4>Results</h4>
+    <table class="w-100">
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><strong>Name: </strong> <%= friend.full_name %></td>
+          <td><strong>email: </strong> <%= friend.email %></td>
+          <% if current_user.not_friend_with?(friend.id) %>
+            <td><%= link_to 'Add friend', friendships_path(friend: friend), data: {turbo: false}, class: "btn btn-xs btn-success ms-2", method: :post %></td>
+          <% else %>
+            <td>
+              <div class="badge bg-dark">You are friends</div>
+            </td>
+          <% end %>
+          <td><%= link_to 'Profile', user_path(friend), class: "btn btn-xs btn-primary ms-2" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

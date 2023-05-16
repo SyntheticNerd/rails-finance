@@ -1,6 +1,24 @@
 <h1 class="mb-4">Friends</h1>
-<% if !@friends.empty? %>
-<div class="row mb-4" >
-  <%= render 'friends/list' %>
+<div class="row mb-4">
+  <div class="search_area">
+    <h4>Search Friends</h4>
+    <%= form_tag search_friend_path, method: :get, remote: true, data: {turbo: false} do %>
+      <div class="input-group">
+        <%= text_field_tag :friend, params[:friend], placeholder: 'Friends Email', autofocus: true, class: "form-control"  %>
+        <div class="input-group-append">
+          <%= button_tag type: :submit, class:"btn btn-outline-secondary" do %>
+            <i class="bi bi-search"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+<div class="row mb-4">
+  <div id="friend-results"></div>
+</div>
+<% if !@friends.empty? %>
+  <div class="row mb-4" >
+    <%= render 'friends/list' %>
+  </div>
 <% end %>

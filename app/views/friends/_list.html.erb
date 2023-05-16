@@ -14,8 +14,8 @@
         <td><%= friend.friend.first_name %></td>
         <td><%= friend.friend.last_name %></td>
         <td>
-          <%# <button class="btn btn-danger btn-sm">Delete</button> %>
-          <%= link_to 'Delete','', data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
+          <%= link_to 'Stop following', friendship_path(friend.friend) , data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger btn-sm" %>
+          <%= link_to 'Profile', user_path(friend.friend), data: {turbo: false}, class: "btn btn-xs btn-primary ms-2" %>
         </td>
       </tr>
     <% end %>
